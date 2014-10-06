@@ -1,6 +1,5 @@
 <h1>Welcome to the bookmark manager</h1>
 
-Current links:
 <ul>
   <% @links.each do |link| %>
     <li><a href="<%= link.url %>"><%= link.title %></a></li>
@@ -11,6 +10,8 @@ Current links:
   <form action="/links" method="post">
     URL:<input type="text" name="url">
     Title: <input type="text" name="title">
+    Tags: <input type="text" name="tags">
     <input type="submit" value="Add link">
+
   </form>
 </div>
