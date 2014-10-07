@@ -3,7 +3,7 @@ source "http://www.rubygems.org/"
 gem 'sinatra'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
-
+gem 'rack-flash3'
 
 group :development, :test do 
   gem 'rspec'
@@ -11,4 +11,5 @@ group :development, :test do
   gem 'capybara'	
   gem 'launchy'
   gem 'bcrypt-ruby'
+  
 end
