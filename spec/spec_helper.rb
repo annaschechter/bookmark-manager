@@ -1,6 +1,6 @@
 ENV["RACK_ENV"] = 'TEST'
 
-require './server'
+require './app/server'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'sinatra'
