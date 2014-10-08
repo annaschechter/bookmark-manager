@@ -6,21 +6,12 @@ require_relative'./lib/link'
 require_relative './lib/tag'
 require_relative './lib/user'
 require_relative 'application.rb'
+require_relative 'data_mapper_setup'
 
 use Rack::Flash, :sweep =>true
 
 enable :sessions
 set :session_secret, 'super secret'
-
-env = ENV["RACK_ENV"] || "development"
-
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
-
-
-
-DataMapper.finalize
-DataMapper.auto_upgrade!
-
 
 
 get '/' do 
@@ -60,4 +51,18 @@ post '/users' do
     end
 end
 
+get '/sessions/new' do
+	erb :"sessions/new"
+end
 
+post '/sessions' do
+	email, password = params[:email], params[:password]
+	user = User.authenticate(email, password)
+	if user
+		session[:user_id] = user.id
+        redirect to('/')
+    else
+    	flash[:errors] = ["The email or password is incorrect"]
+    	erb :"sessions/new"
+    end
+end
