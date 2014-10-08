@@ -4,10 +4,7 @@
 	<title>Bookmark manager</title>
 </head>
 <body>
-	<h1>Bookmark manager</h1>
-	<% if current_user %>
-		Welcome, <%= current_user.email %>
-	<% end %>
+
 
 	<% if flash[:notice] %>
 	  <div id="notice"><%= flash[:notice] %></div>
@@ -20,6 +17,20 @@
           <li><%= error %></li>
         <% end %>
       </ul>
+    <% end %>
+
+    <% if current_user %>
+      Welcome, <%= current_user.email %>
+      <form action="/sessions" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Sign out">
+      </form>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <div id="notice">
+        <%= flash[:notice] %>
+      </div>
     <% end %>
 	<%= yield %>
 </body>
