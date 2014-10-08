@@ -5,7 +5,7 @@ require 'rack-flash'
 require_relative'./lib/link'
 require_relative './lib/tag'
 require_relative './lib/user'
-require_relative 'application.rb'
+require_relative 'helpers/application.rb'
 require_relative 'data_mapper_setup'
 
 use Rack::Flash, :sweep =>true
@@ -69,4 +69,30 @@ end
 
 delete '/sessions' do
 	"Good bye!"
+end
+
+get '/reset_password' do
+	erb :"users/reset_password"
+end
+
+post '/reset_password' do
+	email = params[:email]
+	user = User.first(:email => email)
+	if user
+		user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
+		user.password_token_timestamp = Time.now
+		user.save
+		"The new password has been sent to your email account."
+	else
+		flash[:errors] = ["The user does not exist"]
+	end
+end
+
+get '/users/reset_password/:token' do
+    user = User.first(:password_token => token)
+    if user
+    	erb :"users/enter_new_password"
+    else
+    	flash[:errors] = ["The token does not exist"]
+    end
 end
