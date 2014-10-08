@@ -92,9 +92,14 @@ end
 get '/users/reset_password/:token' do
     user = User.first(:password_token => params[:token])
     if user
-    	erb :"users/enter_new_password"
+       request_time = user.password_token_timestamp
+    	if Time.now - request_time < 3600
+    		erb :"users/enter_new_password"
+    	else 
+    		flash[:errors] = ["The request has timed out"]
+    	end
     else
-    	flash[:errors] = ["The token does not exist"]
+    	flash[:errors] = ["The token is invalid"]
     end
 end
 
