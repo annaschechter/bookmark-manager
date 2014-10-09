@@ -1,53 +1,110 @@
 body {
 	font-family: Helvetica, Arial, Sans-serif;
-	 background-image: url(/images/extra_clean_paper.png)
-
+	background-image: url(/images/extra_clean_paper.png);
+	color: #081729;
 }
 
-header a {
-	color: white;
+a {
 	text-decoration: none;
-	font-family: Helvetica, Arial, Sans-serif;
+	color: #263547;
 }
 
 a.button {
 	display: inline-block;
 	width: 80px;
 	cursor: pointer;
-	height: 22px;
-	background: rgb(192,192,192);
+	height: 19px;
+	background: #56d6cb;
 	border: 2px solid white;
-	color: black;
+	color: 263547;
 	text-decoration: none;
 	text-align: center;
-	padding: 5px 10px;
+	vertical-align: middle;
+	padding: 8px 10px;
 	margin-left: 5px;
 	margin-right: 5px; 
 }
 
 a.button.highlighted {
-	background-color: salmon;
+	background-color: #ff9e8f;
 }
 
 header {
 	display: flex;
-	width: 100%;
 	height: 60px;
-	background-color: navy;
-	color: white;
-	padding-left: 60px;
-	padding-top: 15px;
+	background-color: #e8dfd5;
+	color: #263547;;
+	padding: 0px 15px;
 }
+
+header > * {
+    margin: auto 0;
+  }
 
 header #logo{
 	padding-top: 16px;
 	display: flex;
 	margin-right: 20px;
 }
+
+header a {
+	color: #263547;
+}
+
 header #user-links {
-    flex: 1; /* http://learnlayout.com/flexbox.html */
+    flex: 1;
     -webkit-flex: 1;
     text-align: right;  
+}
+
+#links-container {
+  background-color: white;
+  margin: 40px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+  padding: 10px;
+}
+
+.link {
+  background-color: #EEE;
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+  margin: 10px inherit;
+  padding: 15px 10px;
+}
+
+ .link a.title {
+    letter-spacing: 1px;    
+ }
+
+ .link .description {
+    margin: 10px inherit;
+ }
+
+ .link .source {
+    float: right;
+    font-size: 12px;
+ }
+
+ footer {
+  display: flex;
+  background-color: rgba(0,0,0,0.2);
+}
+
+  footer > * {
+    margin: auto inherit;
+}
+
+  footer img {
+    /* http://stackoverflow.com/questions/10658475/3px-extra-height-on-a-div-with-an-image-inside-it */
+    vertical-align: top;
+}
+
+  footer #technologies {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+  footer p {
+    padding: 5px 25px;
 }
 
 

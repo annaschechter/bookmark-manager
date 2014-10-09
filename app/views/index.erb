@@ -2,7 +2,7 @@
 <div id='links-container'>
 <ul>
   <% @links.each do |link| %>
-    <li><a href="<%= link.url %>"><%= link.title %></a></li>
+    <%= partial :link, :locals => {:link => link} %>
   <% end %>
 </ul>
 </div>
