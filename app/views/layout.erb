@@ -2,36 +2,15 @@
 <html>
 <head>
 	<title>Bookmark manager</title>
+  <link rel="stylesheet" type="text/css" href="/css/reset.css"> 
+  <link rel="stylesheet" type="text/css" href="/css/application.css">
 </head>
+
+
+
 <body>
-
-
-	<% if flash[:notice] %>
-	  <div id="notice"><%= flash[:notice] %></div>
-	<% end %>
-
-    <% if flash[:errors] && !flash[:errors].empty? %>
-      Sorry, there were the following problems with the form.
-      <ul id="errors">
-        <% flash[:errors].each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    <% end %>
-
-    <% if current_user %>
-      Welcome, <%= current_user.email %>
-      <form action="/sessions" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Sign out">
-      </form>
-    <% end %>
-
-    <% if flash[:notice] %>
-      <div id="notice">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
+  <%= partial :header %>
+  <%= partial :flash %>
 	<%= yield %>
 </body>
 </html>

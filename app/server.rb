@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
+require 'sinatra/partial'
 
 require_relative'./lib/link'
 require_relative './lib/tag'
@@ -12,6 +13,8 @@ use Rack::Flash, :sweep =>true
 
 enable :sessions
 set :session_secret, 'super secret'
+set :public_folder, Proc.new{ File.join(root, '..', 'public')}
+set :partial_template_engine, :erb
 
 
 get '/' do 
@@ -68,6 +71,7 @@ post '/sessions' do
 end
 
 delete '/sessions' do
+	session[:user_id] = nil
 	"Good bye!"
 end
 
@@ -107,9 +111,11 @@ get '/reset_successful' do
 	user = User.first(:email=> params[:email])
 	flash[:errors] = ["This user does not exist"] unless user
 	if params[:new_password] == params[:new_password_confirm] 
-		user.password = params[:new_password]
+		user.password_digest = BCrypt::Password.create(params[:new_password])
+		user.save
 		"Your password has been successfully reset"
 	else
 		flash[:errors] = ["The passwords do not match"]
+		erb :"users/enter_new_password"
 	end 
 end
