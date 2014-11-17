@@ -15,18 +15,3 @@ task :auto_migrate do
 	puts "Auto-migrate complete (data could have been lost)"
 end
 
-# task :auto_migrate_TEST do
-# 	ENV["RACK_ENV"] = 'TEST'
-# 	DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
-# 	DataMapper.auto_migrate!
-# 	DataMapper.finalize
-# 	puts "Auto-migrate complete (data could have been lost)"
-# end
-
-# task :auto_upgrade_TEST do 
-# 	ENV["RACK_ENV"] = 'TEST'
-# 	DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
-# 	DataMapper.auto_upgrade!
-# 	DataMapper.finalize
-# 	puts "Auto-upgrade complete (no data loss)"
-# end
