@@ -15,6 +15,8 @@ Languages and Tools
 * Sinatra
 * PostgreSQL
 * RSpec
+* HTML
+* CSS
 
 How to use
 ----------
